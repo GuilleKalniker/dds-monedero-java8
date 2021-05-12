@@ -15,14 +15,6 @@ public class Cuenta {
   private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
 
-  public Cuenta() {
-    saldo = 0;
-  }
-
-  //DOBLE CONSTRUCTOR --> NUNCA SE USA
-  public Cuenta(double montoInicial) {
-    saldo = montoInicial;
-  }
 
   public void setMovimientos(List<Movimiento> movimientos) {
     this.movimientos = movimientos;
