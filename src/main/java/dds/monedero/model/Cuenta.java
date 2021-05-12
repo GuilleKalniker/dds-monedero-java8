@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Cuenta {
 
+  //EL VALOR DEL SALDO YA SE INICIALIZA EN EL CONSTRUCTOR
   private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
 
@@ -18,6 +19,7 @@ public class Cuenta {
     saldo = 0;
   }
 
+  //DOBLE CONSTRUCTOR --> NUNCA SE USA
   public Cuenta(double montoInicial) {
     saldo = montoInicial;
   }
@@ -26,6 +28,9 @@ public class Cuenta {
     this.movimientos = movimientos;
   }
 
+
+  //LOGICA REPETIDA ENTRE SACAR Y PONER Y HAY MUCHAS ABSTRACCIONES QUE SE PUEDEN HACER
+  //NOMBRE POCO DECLARATIVO
   public void poner(double cuanto) {
     if (cuanto <= 0) {
       throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
@@ -38,6 +43,8 @@ public class Cuenta {
     new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
   }
 
+  //LOGICA REPETIDA ENTRE SACAR Y PONER Y HAY MUCHAS ABSTRACCIONES QUE SE PUEDEN HACER
+  //NOMBRE POCO DECLARATIVO
   public void sacar(double cuanto) {
     if (cuanto <= 0) {
       throw new MontoNegativoException(cuanto + ": el monto a ingresar debe ser un valor positivo");
@@ -58,6 +65,7 @@ public class Cuenta {
     Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);
     movimientos.add(movimiento);
   }
+//DUPLICATED CODE --> EL MOVIMIENTO TIENE UN METODO PARA SABER SI ES DE UNA FECHA
 
   public double getMontoExtraidoA(LocalDate fecha) {
     return getMovimientos().stream()

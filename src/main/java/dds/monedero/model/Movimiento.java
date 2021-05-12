@@ -31,6 +31,7 @@ public class Movimiento {
     return isExtraccion() && esDeLaFecha(fecha);
   }
 
+  //INNAPROPIATE INTIMACY
   public boolean esDeLaFecha(LocalDate fecha) {
     return this.fecha.equals(fecha);
   }
@@ -42,12 +43,13 @@ public class Movimiento {
   public boolean isExtraccion() {
     return !esDeposito;
   }
-
+  //MISPLACED METHOD
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
     cuenta.agregarMovimiento(fecha, monto, esDeposito);
   }
 
+//TYPE TEST Y MISPLACED METHOD
   public double calcularValor(Cuenta cuenta) {
     if (esDeposito) {
       return cuenta.getSaldo() + getMonto();
