@@ -31,9 +31,8 @@ public class Movimiento {
     return isExtraccion() && esDeLaFecha(fecha);
   }
 
-  //INNAPROPIATE INTIMACY
   public boolean esDeLaFecha(LocalDate fecha) {
-    return this.fecha.equals(fecha);
+    return this.getFecha().equals(fecha);
   }
 
   public boolean isDeposito() {
