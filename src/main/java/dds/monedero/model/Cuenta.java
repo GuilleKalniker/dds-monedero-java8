@@ -26,6 +26,7 @@ public class Cuenta {
     this.validarMontoPositivo(cuanto);
     this.validarNoExcederCantidadDeDepositos();
     this.agregarMovimiento(LocalDate.now(), cuanto, true);
+    this.saldo += cuanto;
   }
 
 
@@ -34,6 +35,7 @@ public class Cuenta {
     this.validarExtraccionMenorASaldo(cuanto);
     this.validarMontoExtraidoNoSuperaLimite(cuanto);
     this.agregarMovimiento(LocalDate.now(), cuanto, false);
+    this.saldo -= cuanto;
 
   }
   public boolean validarNoExcederCantidadDeDepositos(){
