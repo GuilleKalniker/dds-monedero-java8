@@ -8,10 +8,10 @@ import dds.monedero.exceptions.SaldoMenorException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cuenta {
 
-  //EL VALOR DEL SALDO YA SE INICIALIZA EN EL CONSTRUCTOR
   private double saldo = 0;
   private List<Movimiento> movimientos = new ArrayList<>();
 
@@ -57,15 +57,18 @@ public class Cuenta {
     Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);
     movimientos.add(movimiento);
   }
-//DUPLICATED CODE --> EL MOVIMIENTO TIENE UN METODO PARA SABER SI ES DE UNA FECHA
+
 
   public double getMontoExtraidoA(LocalDate fecha) {
-    return getMovimientos().stream()
-        .filter(movimiento -> !movimiento.isDeposito() && movimiento.getFecha().equals(fecha))
+    return this.movimientosDe(fecha)
+        .stream()
+        .filter(movimiento -> !movimiento.isDeposito())
         .mapToDouble(Movimiento::getMonto)
         .sum();
   }
-
+ public List<Movimiento> movimientosDe(LocalDate fecha){
+    return getMovimientos().stream().filter(m -> m.esDeLaFecha(fecha)).collect(Collectors.toList());
+ }
   public List<Movimiento> getMovimientos() {
     return movimientos;
   }
