@@ -38,26 +38,20 @@ public class Cuenta {
     this.saldo -= cuanto;
 
   }
-  public boolean validarNoExcederCantidadDeDepositos(){
+  public void validarNoExcederCantidadDeDepositos(){
     if(this.movimientosDe(LocalDate.now()).size() >= this.getLimiteDepositos()){
       throw new MaximaCantidadDepositosException("Ya excedio los " + this.getLimiteDepositos() + " depositos diarios");
-    }else{
-      return true;
     }
   }
-  public boolean validarMontoExtraidoNoSuperaLimite(double monto){
+  public void validarMontoExtraidoNoSuperaLimite(double monto){
     if(monto > this.limiteExtraccion()){
       throw new MaximoExtraccionDiarioException("No puede extraer mas de $ " + 1000
           + " diarios, límite: " + this.limiteExtraccion());
-    }else{
-      return true;
     }
   }
-  public boolean validarMontoPositivo(double monto){
+  public void  validarMontoPositivo(double monto){
     if(monto<0){
       throw new MontoNegativoException(monto + ": el monto a ingresar debe ser un valor positivo");
-    }else{
-      return true;
     }
   }
   public double limiteExtraccion(){
