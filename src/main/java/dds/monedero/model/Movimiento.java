@@ -45,12 +45,4 @@ public class Movimiento {
   }
 
 
-//TYPE TEST Y MISPLACED METHOD
-  public double calcularValor(Cuenta cuenta) {
-    if (esDeposito) {
-      return cuenta.getSaldo() + getMonto();
-    } else {
-      return cuenta.getSaldo() - getMonto();
-    }
-  }
 }
